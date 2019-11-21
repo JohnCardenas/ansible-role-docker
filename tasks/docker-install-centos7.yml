@@ -29,7 +29,7 @@
     - docker-ce-cli
     - containerd.io
 
-- name: Install Docker Python Libraries
+- name: Install Docker Python Modules
   pip:
     executable: pip3
     name: "{{ item }}"
