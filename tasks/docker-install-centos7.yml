@@ -29,11 +29,14 @@
     - docker-ce-cli
     - containerd.io
 
-- name: Install docker-compose
+- name: Install Docker Python Libraries
   pip:
     executable: pip3
-    name: docker-compose
+    name: "{{ item }}"
     state: present
+  loop:
+    - docker
+    - docker-compose
 
 - name: Start Docker
   service:
