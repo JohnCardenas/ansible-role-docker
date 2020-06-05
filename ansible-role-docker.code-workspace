@@ -1,0 +1,29 @@
+{
+    "folders": [
+        {
+            "path": "."
+        }
+    ],
+    "extensions": {
+        "recommendations": [
+            "esbenp.prettier-vscode",
+            "haaaad.ansible",
+            "redhat.vscode-yaml",
+            "samuelcolvin.jinjahtml",
+            "ms-python.python"
+        ]
+    },
+    "settings": {
+        // Enable/disable default YAML formatter (requires restart)
+        "yaml.format.enable": true,
+        "files.associations": {
+            "**/tasks/*.yml": "ansible",
+            "**/handlers/*.yml": "ansible",
+            "**/tests/*.yml": "ansible"
+        },
+        "[yaml]": {
+            "editor.defaultFormatter": "esbenp.prettier-vscode",
+            "editor.formatOnSave": true
+        }
+    }
+}

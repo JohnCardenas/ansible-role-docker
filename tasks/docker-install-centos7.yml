@@ -1,0 +1,54 @@
+---
+- name: Install Required Packages
+  yum:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - epel-release
+    - yum-utils
+    - device-mapper-persistent-data
+    - lvm2
+    - python
+    - python-pip
+    - python3
+    - python3-pip
+
+- name: Install docker-ce-stable Repository
+  yum_repository:
+    name: docker-ce-stable
+    description: Docker CE Stable - $basearch
+    baseurl: https://download.docker.com/linux/centos/7/$basearch/stable
+    gpgcheck: true
+    gpgkey: https://download.docker.com/linux/centos/gpg
+
+- name: Install Docker Packages
+  yum:
+    name: "{{ item }}"
+    state: present
+    update_cache: true
+  loop:
+    - docker-ce
+    - docker-ce-cli
+    - containerd.io
+
+- name: Install Docker Python2 Modules
+  pip:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - docker
+
+- name: Install Docker Python3 Modules
+  pip:
+    executable: pip3
+    name: "{{ item }}"
+    state: present
+  loop:
+    - docker
+    - docker-compose
+
+- name: Start Docker
+  service:
+    name: docker
+    state: started
+    enabled: true
